@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="HotMess: Forward", group="Linear OpMode")
-@Disabled
-public abstract class Forward extends LinearOpMode {
+//@Disabled
+public class Forward extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -30,7 +30,9 @@ public abstract class Forward extends LinearOpMode {
 
         leftMotor.setPower(power);
         rightMotor.setPower(power);
-        sleep(2000);
+
+        while (opModeIsActive() && (runtime.seconds() < 2.0)){
+        }
 
         power = (0.0);
         leftMotor.setPower(power);
