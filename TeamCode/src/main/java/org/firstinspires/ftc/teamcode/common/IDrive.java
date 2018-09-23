@@ -17,6 +17,8 @@ public interface IDrive {
     void stop();
 
     void setMode(DcMotor.RunMode runMode);
+
+    void driveToPosition(int leftPosition, int rightPosition);
 }
 
 
