@@ -12,7 +12,6 @@ public class Joystick_Drive extends LinearOpMode{
     DcMotor rightMotor;
 
     double power = 0.5;
-
     public void runOpMode () throws InterruptedException {
 
         //Object telemetry;
