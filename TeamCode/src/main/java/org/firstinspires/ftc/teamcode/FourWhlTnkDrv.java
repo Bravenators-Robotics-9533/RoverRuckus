@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-@TeleOp(name="4-Wheel_Tank_Drive", group = "Linear OpMode")
-
+@TeleOp(name="4_Wheel_Tank_Drive", group = "Linear OpMode")
+//Disabled
 public class FourWhlTnkDrv extends LinearOpMode{
 
     DcMotor frontLeft;
