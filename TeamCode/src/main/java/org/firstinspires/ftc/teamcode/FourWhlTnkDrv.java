@@ -24,8 +24,8 @@ public class FourWhlTnkDrv extends LinearOpMode{
         frontRight = hardwareMap.dcMotor.get("Front_Right");
         backLeft = hardwareMap.dcMotor.get("Back_Left");
         backRight = hardwareMap.dcMotor.get("Back_Right");
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
 
