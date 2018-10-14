@@ -5,21 +5,22 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.common.FtcGamePad;
 import org.firstinspires.ftc.teamcode.common.TankDrive;
+import org.firstinspires.ftc.teamcode.common.TankDriveFourWheel;
 
 @TeleOp(name = "TeleOp Teaching", group = "Tutorials")
-@Disabled
+
 public class Teleop_Teaching extends Teaching_BaseLinearOpMode implements FtcGamePad.ButtonHandler {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Initialize(hardwareMap, false);
-        setDrive(new TankDrive(robot, driverGamePad));
+        Initialize(hardwareMap, true);
+        setDrive(new TankDriveFourWheel(robot, driverGamePad));
 
         waitForStart();
 
         while(opModeIsActive())
         {
-            //drive.handle();
+            drive.handle();
         }
 
         robot.stop();

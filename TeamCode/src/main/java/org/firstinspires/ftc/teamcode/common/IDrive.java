@@ -13,6 +13,7 @@ public interface IDrive {
     void handle();
 
     void drive(double ly, double lx, double rx);
+    void drive(double left, double right);
 
     void stop();
 
