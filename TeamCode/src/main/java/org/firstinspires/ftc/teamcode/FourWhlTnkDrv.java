@@ -14,6 +14,7 @@ public class FourWhlTnkDrv extends LinearOpMode{
     DcMotor frontRight;
     DcMotor backLeft;
     DcMotor backRight;
+    DcMotor liftMotor;
 
     double power = 1.0;
     public void runOpMode() throws InterruptedException {
@@ -24,6 +25,7 @@ public class FourWhlTnkDrv extends LinearOpMode{
         frontRight = hardwareMap.dcMotor.get("Front_Right");
         backLeft = hardwareMap.dcMotor.get("Back_Left");
         backRight = hardwareMap.dcMotor.get("Back_Right");
+        liftMotor = hardwareMap.dcMotor.get("Lift_Motor");
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -34,6 +36,20 @@ public class FourWhlTnkDrv extends LinearOpMode{
             frontRight.setPower(-gamepad1.right_stick_y);
             backLeft.setPower(-gamepad1.left_stick_y);
             backRight.setPower(-gamepad1.right_stick_y);
+
+            if (gamepad1.a) {
+                liftMotor.setPower(0.5);
+
+            } else {
+                liftMotor.setPower(0.0);
+            }
+
+
+            if (gamepad1.y) {
+                liftMotor.setPower(-0.5);
+            } else {
+                liftMotor.setPower(0.0);
+            }
         }
     }
 }
