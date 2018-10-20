@@ -26,8 +26,8 @@ public class FourWhlTnkDrv extends LinearOpMode{
         backLeft = hardwareMap.dcMotor.get("Back_Left");
         backRight = hardwareMap.dcMotor.get("Back_Right");
         liftMotor = hardwareMap.dcMotor.get("Lift_Motor");
-        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
 
@@ -37,7 +37,7 @@ public class FourWhlTnkDrv extends LinearOpMode{
             backLeft.setPower(-gamepad1.left_stick_y);
             backRight.setPower(-gamepad1.right_stick_y);
 
-            if (gamepad1.a) {
+            if (gamepad2.a) {
                 liftMotor.setPower(0.5);
 
             } else {
@@ -45,7 +45,7 @@ public class FourWhlTnkDrv extends LinearOpMode{
             }
 
 
-            if (gamepad1.y) {
+            if (gamepad2.y) {
                 liftMotor.setPower(-0.5);
             } else {
                 liftMotor.setPower(0.0);
