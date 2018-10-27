@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.os.Debug;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -81,11 +83,14 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
         targetsRoverRuckus.activate();
         while(opModeIsActive() )
         {
-            turnDegrees(TurnDirection.COUNTERCLOCKWISE, 10);
+            turnDegrees(TurnDirection.CLOCKWISE, 10);
             totalMove += 10;
             if(this.locateVuforiaTarget())
             {
                 foundImage = true;
+
+                currentStatus = "Found Image and Is Moving";
+
                 break;
             }
             if(totalMove > 50) {
@@ -126,6 +131,8 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
         turnDegrees(TurnDirection.COUNTERCLOCKWISE, 90);
     }
 
+    // Main Programming Chunk
+
     void Silver(double speed) {
 
         currentStatus = "Move out from lander";
@@ -138,14 +145,12 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
         turnDegrees(TurnDirection.COUNTERCLOCKWISE, 90);
         pause();
 
-
-        currentStatus="get closer to image";
+        currentStatus="Get closer to image";
         driveStraight(speed, 19, 3);
         pause();
 
-        turnDegrees(TurnDirection.COUNTERCLOCKWISE, 10);
+        turnDegrees(TurnDirection.CLOCKWISE, 20);
         pause();
-
 
         currentStatus = "Turn to face image";
         //detect image and turn to face image
@@ -158,25 +163,29 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
             return;
         }
 
+        turnDegrees(TurnDirection.COUNTERCLOCKWISE, hypotenuse - 10);
+//        double distaneToDriveToImage = hypotenuse - 40;
+//        driveStraight(speed, distaneToDriveToImage, 5);
+
         //drive to image staying off wall about 10 inches
-        double distanceToDriveToImage = hypotenuse - 20;
-        currentStatus = "Drive to image wall";
-        driveStraight(speed, distanceToDriveToImage, 5);
-
-
-        currentStatus = "Turn towards depot";
-        //turn towards depot
-        double new_angle = 90 - angle;
-        turnDegrees(TurnDirection.COUNTERCLOCKWISE, new_angle);
-
-
-        currentStatus = "Move to depot";
-        //calculate new movement and move to depot
-        double new_x = 20*Math.sin(angle);
-        double distance_to_depot_wall = (6*12) + new_x;
-        double move_to_depot_wall = distance_to_depot_wall - 15;
-        driveStraight(speed, move_to_depot_wall, 5);
-
+//        double distanceToDriveToImage = hypotenuse - 20;
+//        currentStatus = "Drive to image wall";
+//        driveStraight(speed, distanceToDriveToImage, 5);
+//
+//
+//        currentStatus = "Turn towards depot";
+//        //turn towards depot
+//        double new_angle = 90 - angle;
+//        turnDegrees(TurnDirection.COUNTERCLOCKWISE, new_angle);
+//
+//
+//        currentStatus = "Move to depot";
+//        //calculate new movement and move to depot
+//        double new_x = 20*Math.sin(angle);
+//        double distance_to_depot_wall = (6*12) + new_x;
+//        double move_to_depot_wall = distance_to_depot_wall - 15;
+//        driveStraight(speed, move_to_depot_wall, 5);
+//
 
 
 //
@@ -201,36 +210,39 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
 
 
     }
+
+    //Call Later
+
     void Gold(double speed) {
 
-        //drive out from lander
-        driveStraight(speed, 14, 5);
-        pause();
-
-        //turn left
-        turn90(TurnDirection.COUNTERCLOCKWISE, speed);
-        pause();
-
-        //drive forward 24 inches
-        driveStraight(speed, 24, 5);
-        pause();
-
-        //turn to face wall
-        turn45(TurnDirection.CLOCKWISE, speed);
-        pause();
-
-        //drive to wall, stopping at least 10 inches short
-        driveStraight(speed, 15, 5);
-        pause();
-
-        turn90(TurnDirection.CLOCKWISE, speed);
-        pause();
-
-        driveStraight(1, 48, 20);
-        pause();
-
-        driveStraight(1, -76, 20);
-        pause();
+//        //drive out from lander
+//        driveStraight(speed, 14, 5);
+//        pause();
+//
+//        //turn left
+//        turn90(TurnDirection.COUNTERCLOCKWISE, speed);
+//        pause();
+//
+//        //drive forward 24 inches
+//        driveStraight(speed, 24, 5);
+//        pause();
+//
+//        //turn to face wall
+//        turn45(TurnDirection.CLOCKWISE, speed);
+//        pause();
+//
+//        //drive to wall, stopping at least 10 inches short
+//        driveStraight(speed, 15, 5);
+//        pause();
+//
+//        turn90(TurnDirection.CLOCKWISE, speed);
+//        pause();
+//
+//        driveStraight(1, 48, 20);
+//        pause();
+//
+//        driveStraight(1, -76, 20);
+//        pause();
 
 //        turn90(TurnDirection.CLOCKWISE, speed);
 //        pause();
