@@ -188,9 +188,9 @@ public abstract class Teaching_BaseLinearOpMode extends LinearOpMode {
          * In this example, it is centered (left to right), but 110 mm forward of the middle of the robot, and 200 mm above ground level.
          */
 
-        final int CAMERA_FORWARD_DISPLACEMENT  = 181;   // eg: Camera is 110 mm in front of robot center
+        final int CAMERA_FORWARD_DISPLACEMENT  = 154;   // eg: Camera is 110 mm in front of robot center
         final int CAMERA_VERTICAL_DISPLACEMENT = 100;   // eg: Camera is 200 mm above ground
-        final int CAMERA_LEFT_DISPLACEMENT     = 154;     // eg: Camera is ON the robot's center line
+        final int CAMERA_LEFT_DISPLACEMENT     = 129;     // eg: Camera is ON the robot's center line
 
         OpenGLMatrix phoneLocationOnRobot = OpenGLMatrix
                 .translation(CAMERA_FORWARD_DISPLACEMENT, CAMERA_LEFT_DISPLACEMENT, CAMERA_VERTICAL_DISPLACEMENT)
@@ -210,17 +210,32 @@ public abstract class Teaching_BaseLinearOpMode extends LinearOpMode {
 
 
     public void turnDegrees(Autonomous_Teaching.TurnDirection direction, double degrees, double speed) {
-        final double onedegreeticks = 3.4777;
+//        final double onedegreeticks = 3.4777 * ( 60.0 / 125.0);
+//        final double WHEEL_DIAMETER_INCHES_FOR_TURNING = 3.51;
+//        final double DESIRED_MOVEMENT_TICKS = onedegreeticks * degrees;
+//
+//        double turnInches = (WHEEL_DIAMETER_INCHES_FOR_TURNING * 3.1415) * ( DESIRED_MOVEMENT_TICKS / (robot.REV_COUNTS_PER_MOTOR_REV));
+//        if(direction == Autonomous_Teaching.TurnDirection.CLOCKWISE) {
+//            //maneuver build for counter-clockwise, so reverse
+//            turnInches = -turnInches;
+//        }
+
+        //robot.COUNTS_PER_INCH
+        final double onedegreeticks = 3.04;
         final double WHEEL_DIAMETER_INCHES_FOR_TURNING = 3.51;
         final double DESIRED_MOVEMENT_TICKS = onedegreeticks * degrees;
 
-        double turnInches = (WHEEL_DIAMETER_INCHES_FOR_TURNING * 3.1415) * ( DESIRED_MOVEMENT_TICKS / (robot.REV_COUNTS_PER_MOTOR_REV));
+        //x = (312.993*90)/103
+
+        //3.4777 * 90 = 312.993 == 103
+        //     y * 90 =   273.5 == 90
+
+
+        double turnInches = (WHEEL_DIAMETER_INCHES_FOR_TURNING * Math.PI) * (DESIRED_MOVEMENT_TICKS / robot.REV_COUNTS_PER_MOTOR_REV );
         if(direction == Autonomous_Teaching.TurnDirection.CLOCKWISE) {
-            //maneuver build for counter-clockwise, so reverse
             turnInches = -turnInches;
         }
-        //updateStep("Turning 90 degrees");
-        encoderDrive(0.5, -turnInches, turnInches, 10.0, false);
+        encoderDrive(0.75, -turnInches, turnInches, 10.0, false);
     }
     public void turnDegrees(Autonomous_Teaching.TurnDirection direction, double degrees) {
         turnDegrees(direction, degrees, 0.5);
@@ -336,8 +351,8 @@ public abstract class Teaching_BaseLinearOpMode extends LinearOpMode {
                 if(maxed) {
                     double newSpeed = Easing.Interpolate(1 - (differenceLeft / scale), Easing.Functions.QuinticEaseIn);
                     currentSpeed = newSpeed;
-                    if(currentSpeed < 0.2) {
-                        currentSpeed = 0.2;
+                    if(currentSpeed < 0.4) {
+                        currentSpeed = 0.4;
                     }
                 }
                 else if(currentSpeed < speed) {

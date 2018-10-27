@@ -11,6 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
+import org.firstinspires.ftc.teamcode.common.GTADrive;
 import org.firstinspires.ftc.teamcode.common.TankDrive;
 import org.firstinspires.ftc.teamcode.common.TankDriveFourWheel;
 
@@ -36,8 +37,8 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Initialize(hardwareMap, false);
-        setDrive(new TankDrive(robot, driverGamePad));
+        Initialize(hardwareMap, true);
+        setDrive(new GTADrive(robot, driverGamePad));
 
         ComposeTelemetryPreStart();
 
@@ -120,7 +121,7 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
 
 
     void Silver2(double speed){
-        //driveStraight(speed, 10, 10);
+        //driveStraight(speed, 24, 10);
 
         turnDegrees(TurnDirection.COUNTERCLOCKWISE, 90);
     }
@@ -129,13 +130,22 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
 
         currentStatus = "Move out from lander";
         //move out from lander 2 inches
-        driveStraight(speed, 6, 3);
+        driveStraight(speed, 12, 3);
         pause();
 
 
         currentStatus = "Turn some";
-        turn45(TurnDirection.COUNTERCLOCKWISE);
+        turnDegrees(TurnDirection.COUNTERCLOCKWISE, 90);
         pause();
+
+
+        currentStatus="get closer to image";
+        driveStraight(speed, 19, 3);
+        pause();
+
+        turnDegrees(TurnDirection.COUNTERCLOCKWISE, 10);
+        pause();
+
 
         currentStatus = "Turn to face image";
         //detect image and turn to face image

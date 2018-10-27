@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Robot {
 
     public static final double     REV_COUNTS_PER_MOTOR_REV = 288;      // eg: Rev Side motor
-    static final double            DRIVE_GEAR_REDUCTION    = 1.0 / 2.0 ;             // This is < 1.0 if geared UP
+    static final double            DRIVE_GEAR_REDUCTION    = 60.0 / 125.0 ;             // This is < 1.0 if geared UP
     static final double            WHEEL_DIAMETER_INCHES   = 3.543 ;           // For figuring circumference
     public static final double     COUNTS_PER_INCH = (REV_COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
@@ -34,6 +34,9 @@ public class Robot {
 
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
 
+        motorFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         this.fourWheelDrive = fourWheelDrive;
 
         if(fourWheelDrive) {
@@ -41,6 +44,9 @@ public class Robot {
             motorBackLeft = hardwareMap.dcMotor.get("Back_Left");
             motorBackRight = hardwareMap.dcMotor.get("Back_Right");
             motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
+
+            motorBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            motorBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
 
     }
