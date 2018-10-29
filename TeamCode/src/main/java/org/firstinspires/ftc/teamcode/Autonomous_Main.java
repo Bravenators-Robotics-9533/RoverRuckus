@@ -29,7 +29,7 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
         COUNTERCLOCKWISE
     }
 
-
+    private Boolean hold;
     private String currentStatus;
     private static final long pauseTimeBetweenSteps = 1000;
 
@@ -134,7 +134,7 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
 
         currentStatus = "Move out from lander";
         //move out from lander 2 inches
-        driveStraight(speed, 12, 3);
+        driveStraight(speed, 14, 3);
 
         currentStatus = "Turn some";
         turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, 90);
@@ -155,7 +155,19 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
         }
 
         turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, hypotenuse - 10);
-        driveStraight(-speed, 19, 3);
+
+        //Move Back To Get In Line With Image
+        driveStraight(speed, -16, 3);
+
+        //Turn to see Image
+        turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, 95);
+
+        //Move back to see objects
+
+
+        //Wait After for Testing Only
+        //TODO Remove After Testing
+        waitForTick(100000);
 //        double distaneToDriveToImage = hypotenuse - 40;
 //        driveStraight(speed, distaneToDriveToImage, 5);
 
