@@ -163,7 +163,7 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
         turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, 95);
 
         //Move back to see objects
-
+        driveStraight(speed, -15, 3);
 
         //Wait After for Testing Only
         //TODO Remove After Testing
