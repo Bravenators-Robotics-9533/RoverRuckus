@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import android.os.Debug;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -23,10 +21,9 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.XYZ;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
 import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.BACK;
 
-//@Autonomous(name="Teaching: Autonomous", group="Tutorials")
-//@Disabled
-public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
+@Autonomous(name="Main: Autonomous", group="Main")
 
+public class Autonomous_Main extends Teaching_BaseLinearOpMode{
     enum TurnDirection {
         CLOCKWISE,
         COUNTERCLOCKWISE
@@ -83,7 +80,7 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
         targetsRoverRuckus.activate();
         while(opModeIsActive() )
         {
-            turnDegrees(TurnDirection.CLOCKWISE, 10);
+            turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, 10);
             totalMove += 10;
             if(this.locateVuforiaTarget())
             {
@@ -115,7 +112,7 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
         double desiredAngle = 90-angle;
         double movementAngle = currentHeading - desiredAngle;
 
-        turnDegrees((movementAngle < 0) ? TurnDirection.CLOCKWISE : TurnDirection.COUNTERCLOCKWISE, movementAngle);
+        turnDegrees((movementAngle < 0) ? Autonomous_Teaching.TurnDirection.CLOCKWISE : Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, movementAngle);
 
         double hypotenuse = Math.sqrt(opposite*opposite + adjacent*adjacent);
 
@@ -128,7 +125,7 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
     void Silver2(double speed){
         //driveStraight(speed, 24, 10);
 
-        turnDegrees(TurnDirection.COUNTERCLOCKWISE, 90);
+        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, 90);
     }
 
     // Main Programming Chunk
@@ -138,24 +135,18 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
         currentStatus = "Move out from lander";
         //move out from lander 2 inches
         driveStraight(speed, 12, 3);
-        pause();
-
 
         currentStatus = "Turn some";
-        turnDegrees(TurnDirection.COUNTERCLOCKWISE, 90);
-        pause();
+        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, 90);
 
         currentStatus="Get closer to image";
         driveStraight(speed, 19, 3);
-        pause();
 
-        turnDegrees(TurnDirection.CLOCKWISE, 20);
-        pause();
+        turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, 20);
 
         currentStatus = "Turn to face image";
         //detect image and turn to face image
         double hypotenuse = silver_turn_to_image();
-        pause();
 
         if(hypotenuse == 0)
         {
@@ -163,7 +154,8 @@ public class Autonomous_Teaching extends Teaching_BaseLinearOpMode {
             return;
         }
 
-        turnDegrees(TurnDirection.COUNTERCLOCKWISE, hypotenuse - 10);
+        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, hypotenuse - 10);
+        driveStraight(-speed, 19, 3);
 //        double distaneToDriveToImage = hypotenuse - 40;
 //        driveStraight(speed, distaneToDriveToImage, 5);
 
