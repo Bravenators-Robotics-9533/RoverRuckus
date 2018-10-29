@@ -157,7 +157,7 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
         turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, hypotenuse - 10);
 
         //Move Back To Get In Line With Image
-        driveStraight(speed, -16, 3);
+        driveStraight(speed, -15.4343, 3);
 
         //Turn to see Image
         turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, 95);
