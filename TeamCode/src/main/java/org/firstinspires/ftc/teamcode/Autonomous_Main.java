@@ -155,22 +155,24 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
         }
 
         currentStatus="Turn to face trophy drop off";
-        turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, hypotenuse - 10);
+        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, 57);
 
-        driveStraight(speed, 5, 5);
+        driveStraight(speed, 20, 5);
 
         //Servo Code Here
 
-        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, hypotenuse - 10);
+        //TODO Put Back In Later
 
-        //Move Back To Get In Line With Image
-        driveStraight(speed, -15.4343, 3);
-
-        //Turn to see Image
-        turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, 95);
-
-        //Move back to see objects
-        driveStraight(speed, -15, 3);
+//        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, hypotenuse - 10);
+//
+//        //Move Back To Get In Line With Image
+//        driveStraight(speed, -15.4343, 3);
+//
+//        //Turn to see Image
+//        turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, 95);
+//
+//        //Move back to see objects
+//        driveStraight(speed, -15, 3);
 
         //Wait After for Testing Only
         //TODO Remove After Testing
