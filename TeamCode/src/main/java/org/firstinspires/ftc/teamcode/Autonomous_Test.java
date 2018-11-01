@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
@@ -10,6 +11,7 @@ import org.firstinspires.ftc.teamcode.common.GTADrive;
 import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.XYZ;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
+
 
 @Autonomous(name="Test: Autonomous", group="Test")
 
@@ -23,6 +25,7 @@ public class Autonomous_Test extends Teaching_BaseLinearOpMode{
     private String currentStatus;
     private static final long pauseTimeBetweenSteps = 1000;
 
+    Servo trophyArm;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -121,52 +124,7 @@ public class Autonomous_Test extends Teaching_BaseLinearOpMode{
     // Main Programming Chunk
 
     void Silver(double speed) {
-
-        driveStraight(speed, -19, 3);
-//        double distaneToDriveToImage = hypotenuse - 40;
-//        driveStraight(speed, distaneToDriveToImage, 5);
-
-        //drive to image staying off wall about 10 inches
-//        double distanceToDriveToImage = hypotenuse - 20;
-//        currentStatus = "Drive to image wall";
-//        driveStraight(speed, distanceToDriveToImage, 5);
-//
-//
-//        currentStatus = "Turn towards depot";
-//        //turn towards depot
-//        double new_angle = 90 - angle;
-//        turnDegrees(TurnDirection.COUNTERCLOCKWISE, new_angle);
-//
-//
-//        currentStatus = "Move to depot";
-//        //calculate new movement and move to depot
-//        double new_x = 20*Math.sin(angle);
-//        double distance_to_depot_wall = (6*12) + new_x;
-//        double move_to_depot_wall = distance_to_depot_wall - 15;
-//        driveStraight(speed, move_to_depot_wall, 5);
-//
-
-
-//
-//        driveStraight(speed, 14, 5);
-//        pause();
-//
-//        //turn left
-//        turn90(TurnDirection.COUNTERCLOCKWISE, speed);
-//        pause();
-//
-//        driveStraight(speed, 44, 5);
-//        pause();
-//
-//        turn45(TurnDirection.COUNTERCLOCKWISE, speed);
-//        pause();
-//
-//        driveStraight(speed, 57, 5);
-//        pause();
-//
-//        driveStraight(1, -86, 20);
-//        pause();
-
+        trophyArm.setPosition(1.0);
 
     }
 
