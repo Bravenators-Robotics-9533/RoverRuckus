@@ -15,8 +15,9 @@ public class FourWhlTnkDrv extends LinearOpMode{
     DcMotor backLeft;
     DcMotor backRight;
     DcMotor liftMotor;
+    DcMotor mineralGrabber;
 
-    double power = 1.0;
+    //double power = 1.0;
     public void runOpMode() throws InterruptedException {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -26,9 +27,9 @@ public class FourWhlTnkDrv extends LinearOpMode{
         backLeft = hardwareMap.dcMotor.get("Back_Left");
         backRight = hardwareMap.dcMotor.get("Back_Right");
         liftMotor = hardwareMap.dcMotor.get("Lift_Motor");
+        mineralGrabber = hardwareMap.dcMotor.get("Mineral_Grabber");
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-
         waitForStart();
 
         while (opModeIsActive()) {
@@ -44,11 +45,21 @@ public class FourWhlTnkDrv extends LinearOpMode{
                 liftMotor.setPower(0.0);
             }
 
-
             if (gamepad2.y) {
                 liftMotor.setPower(-0.5);
             } else {
                 liftMotor.setPower(0.0);
+            }
+
+            if (gamepad2.left_trigger > 0.5) {
+                mineralGrabber.setPower(0.5);
+            } else {
+                mineralGrabber.setPower(0.0);
+            }
+            if (gamepad2.right_trigger > 0.5) {
+                mineralGrabber.setPower(-0.5);
+            } else {
+                mineralGrabber.setPower(0.0);
             }
         }
     }
