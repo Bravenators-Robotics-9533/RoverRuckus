@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.common.GTADrive;
 import org.firstinspires.ftc.teamcode.common.TankDrive;
 import org.firstinspires.ftc.teamcode.common.TankDriveFourWheel;
 
-@TeleOp(name = "TeleOp Teaching", group = "Tutorials")
+//@TeleOp(name = "TeleOp Teaching", group = "Tutorials")
 
 public class Teleop_Teaching extends Teaching_BaseLinearOpMode implements FtcGamePad.ButtonHandler {
 

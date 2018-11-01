@@ -154,6 +154,13 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
             return;
         }
 
+        currentStatus="Turn to face trophy drop off";
+        turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, hypotenuse - 10);
+
+        driveStraight(speed, 5, 5);
+
+        //Servo Code Here
+
         turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, hypotenuse - 10);
 
         //Move Back To Get In Line With Image
