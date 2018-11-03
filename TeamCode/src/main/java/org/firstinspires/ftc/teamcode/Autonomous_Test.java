@@ -34,6 +34,7 @@ public class Autonomous_Test extends Teaching_BaseLinearOpMode{
 
         ComposeTelemetryPreStart();
 
+
         initializeVuforia();
 
         double speed = 0.85;

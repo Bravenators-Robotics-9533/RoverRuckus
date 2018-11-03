@@ -21,6 +21,8 @@ public class Robot {
 
     private final boolean fourWheelDrive;
 
+    public Config config;
+
 
 //    public Servo servoIntakeLeft = null;
 //    public Servo servoIntakeRight = null;
@@ -49,7 +51,10 @@ public class Robot {
             motorBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
 
+
+        this.config = new Config(hardwareMap.appContext);
     }
+
 
 
     public Pair<Integer, Integer> getCurrentPosition() {

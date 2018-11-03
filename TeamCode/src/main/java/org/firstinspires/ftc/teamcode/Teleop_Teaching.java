@@ -2,14 +2,14 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.common.FtcGamePad;
 import org.firstinspires.ftc.teamcode.common.GTADrive;
 import org.firstinspires.ftc.teamcode.common.TankDrive;
 import org.firstinspires.ftc.teamcode.common.TankDriveFourWheel;
 
-//@TeleOp(name = "TeleOp Teaching", group = "Tutorials")
-
+@TeleOp(name = "TeleOp Teaching", group = "Tutorials")
 public class Teleop_Teaching extends Teaching_BaseLinearOpMode implements FtcGamePad.ButtonHandler {
 
     @Override
@@ -17,11 +17,17 @@ public class Teleop_Teaching extends Teaching_BaseLinearOpMode implements FtcGam
         Initialize(hardwareMap, true);
         setDrive(new GTADrive(robot, driverGamePad));
 
+        DcMotor lights = hardwareMap.dcMotor.get("lights");
+
         waitForStart();
 
         while(opModeIsActive())
         {
             drive.handle();
+
+            double value = operatorGamePad.getRightTrigger();
+            value = Math.min(robot.config.getMaxLightBrightness(), value);
+            lights.setPower(value);
         }
 
         robot.stop();
