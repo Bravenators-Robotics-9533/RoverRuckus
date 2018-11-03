@@ -36,11 +36,17 @@ public class Config {
     }
 
     public double getSpeed() {
-        return sp.getFloat("speed", 0);
+        return sp.getFloat("speed", 0.85f);
     }
 
     public void setSpeed(double speed) {
         sp.edit().putFloat("speed", (float)speed).apply();
+    }
+
+
+    public double getMaxLightBrightness() { return  sp.getFloat("maxbrightnes", 0.5f);}
+    public void setMaxLightBrightness(double brightness) {
+        sp.edit().putFloat("maxbrightness", (float)brightness).apply();
     }
 
     public enum Colors {
