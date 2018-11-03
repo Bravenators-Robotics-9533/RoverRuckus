@@ -30,20 +30,21 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
     }
 
     private Boolean hold;
-    private String currentStatus;
-    private static final long pauseTimeBetweenSteps = 1000;
+    private String currentStatus; //The current status of the robot, what position it should be doing.
+    private static final long pauseTimeBetweenSteps = 1000; //The pause between every steps is 1 second
 
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Initialize(hardwareMap, true);
-        setDrive(new GTADrive(robot, driverGamePad));
+        Initialize(hardwareMap, true); //Four wheel drive is true meaning that it will run a four wheel drive
+        setDrive(new GTADrive(robot, driverGamePad)); //That sets the robot into GTA mode
 
         ComposeTelemetryPreStart();
 
         initializeVuforia();
 
-        double speed = 0.85;
+        double speed = 0.65;
+
 
 //        Context context = hardwareMap.appContext;
 //
@@ -81,6 +82,8 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
         while(opModeIsActive() )
         {
             turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, 10);
+            //It means that when it has landed the robot will start turning clockwise 10 degrees
+
             totalMove += 10;
             if(this.locateVuforiaTarget())
             {
@@ -91,7 +94,7 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
                 break;
             }
             if(totalMove > 50) {
-                break;
+                break; //This means that if the total movement of the robot is more than 50, then break the program
             }
         }
 
@@ -104,60 +107,63 @@ public class Autonomous_Main extends Teaching_BaseLinearOpMode{
         VectorF translation = lastLocation.getTranslation();
 
         float opposite = Math.abs(translation.get(0) / mmPerInch); //x
-        float adjacent = Math.abs(translation.get(1) / mmPerInch); //y
+
+        float hypotenuse = Math.abs(translation.get (2) / mmPerInch);
         // express the rotation of the robot in degrees.
         Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
         double currentHeading = Math.abs(rotation.thirdAngle);
-        angle = Math.atan(opposite / adjacent);
-        double desiredAngle = 90-angle;
-        double movementAngle = currentHeading - desiredAngle;
+
+        double desiredAngle = 50;
+        double movementAngle = desiredAngle;
 
         turnDegrees((movementAngle < 0) ? Autonomous_Teaching.TurnDirection.CLOCKWISE : Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, movementAngle);
 
-        double hypotenuse = Math.sqrt(opposite*opposite + adjacent*adjacent);
+        double adjacent = Math.sqrt(hypotenuse*hypotenuse - opposite*opposite);
+
 
         targetsRoverRuckus.deactivate();
-        return hypotenuse;
+        return adjacent;
 
     }
 
 
-    void Silver2(double speed){
-        //driveStraight(speed, 24, 10);
+    void Silver2(double speed) {
+        driveStraight(speed, 24, 10);
 
-        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, 90);
+        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, 0);
+
     }
 
     // Main Programming Chunk
 
-    void Silver(double speed) {
+        void Silver(double speed) {
 
-        currentStatus = "Move out from lander";
-        //move out from lander 2 inches
-        driveStraight(speed, 14, 3);
+            currentStatus = "Move out from lander";
+            //move out from lander 2 inches
+            driveStraight(0.20, 16, 3);
 
         currentStatus = "Turn some";
-        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, 90);
+        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, 10);
 
-        currentStatus="Get closer to image";
-        driveStraight(speed, 19, 3);
+        //currentStatus="Get closer to image";
+        //driveStraight(speed, 19, 3);
 
-        turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, 20);
+        //turnDegrees(Autonomous_Teaching.TurnDirection.CLOCKWISE, 20);
 
         currentStatus = "Turn to face image";
         //detect image and turn to face image
-        double hypotenuse = silver_turn_to_image();
+       double adjacent = silver_turn_to_image();
 
-        if(hypotenuse == 0)
+       if(adjacent == 0)
         {
-            currentStatus = "Could not find image";
-            return;
+           currentStatus = "Could not find image";
+          return;
         }
 
-        currentStatus="Turn to face trophy drop off";
-        turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, 57);
+      //  currentStatus="Turn to face trophy drop off";
+      // turnDegrees(Autonomous_Teaching.TurnDirection.COUNTERCLOCKWISE, 57);
 
-        driveStraight(speed, 20, 5);
+      //  driveStraight(speed, 20, 5);
 
         //Servo Code Here
 
